@@ -36,8 +36,6 @@ export const FoodMenu = () => {
     [menu, searchString]
   );
 
-  console.log(searchString, filteredItems);
-
   return (
     <div className="flex flex-col m-4">
       <SearchInput

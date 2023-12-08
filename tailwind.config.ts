@@ -10,7 +10,9 @@ const config: Config = {
     colors: {
       inputBorder: "#8A94A4",
       transparent: "transparent",
-      white: "#ffffff",
+      white: "#FFF",
+      secondaryBackground: "#F8F9FA",
+      border: "#EEE",
     },
     extend: {
       transitionProperty: {

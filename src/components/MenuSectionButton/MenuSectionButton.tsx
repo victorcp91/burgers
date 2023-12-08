@@ -14,24 +14,35 @@ export const MenuSectionButton = ({
     setSection(id);
   };
 
-  const { webSettings } = useContext(RestaurantContext);
+  const {
+    webSettings: { primaryColour },
+  } = useContext(RestaurantContext);
 
   return (
     <a
       className={`border-b-2 p-2 text-center`}
       style={{
-        borderColor: active ? webSettings.primaryColour : "transparent",
+        borderColor: active ? primaryColour : "transparent",
       }}
       href={`#${name}`}
       onClick={selectSection}
     >
-      <div className="relative h-[82px] w-[82px] rounded-full overflow-hidden">
+      <div
+        className="relative h-[82px] w-[82px]"
+        style={{ borderColor: primaryColour }}
+      >
+        {active && (
+          <span
+            className="absolute h-[90px] w-[90px] rounded-full border-2 top-[-4px] left-[-4px]"
+            style={{ borderColor: primaryColour }}
+          />
+        )}
         <Image
           src={src}
           alt={name}
           fill
           sizes="82px"
-          className="object-cover h-auto w-auto"
+          className="object-cover h-auto w-auto rounded-full overflow-hidden"
         />
       </div>
       <label

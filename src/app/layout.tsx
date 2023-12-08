@@ -14,7 +14,13 @@ export default async function RootLayout({
   const restaurant: IRestaurant = await getRestaurantDetails();
 
   return (
-    <html lang={restaurant.locale} className="scroll-smooth">
+    <html
+      lang={restaurant.locale}
+      className="scroll-smooth"
+      style={{
+        backgroundColor: restaurant.webSettings.backgroundColour || "#fff",
+      }}
+    >
       <head>
         <title>{restaurant.name}</title>
         <meta
