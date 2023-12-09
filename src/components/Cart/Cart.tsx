@@ -4,6 +4,7 @@ import CloseButton from "../CloseButton";
 import { CartContext } from "@/contexts/Cart";
 import { ICartProps } from "./Cart.types";
 import ActionButton from "../ActionButton";
+import { getFormattedMonetaryValue } from "@/utils";
 
 export const Cart = ({ openedMobile, onClose }: ICartProps) => {
   const { cart } = useContext(CartContext);
@@ -31,7 +32,7 @@ export const Cart = ({ openedMobile, onClose }: ICartProps) => {
         sum += item.price * item.qty;
       }
     });
-    return sum;
+    return getFormattedMonetaryValue(sum);
   }, [cart]);
 
   return (
@@ -61,13 +62,13 @@ export const Cart = ({ openedMobile, onClose }: ICartProps) => {
             <span className="block text-2xl font-light">Total:</span>
             <span className="block text-2xl font-bold ">R${total}</span>
           </div>
+          <div className="absolute w-full p-4 bottom-4 lg:hidden">
+            <ActionButton label="Checkout now" />
+          </div>
         </>
       ) : (
         <p className="bg-white p-4">Your cart is empty</p>
       )}
-      <div className="absolute w-full p-4 bottom-4 lg:hidden">
-        <ActionButton label="Checkout now" />
-      </div>
     </div>
   );
 };

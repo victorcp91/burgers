@@ -1,9 +1,9 @@
 import { IMenuSection } from "@/types";
 import api from "../config";
 
-export const getRestaurantMenu = (): IMenuSection[] =>
+export const getRestaurantMenu = (): Promise<IMenuSection[]> =>
   // api.get("a27e98a8-fe59-4623-be70-b9ac4a3254a7");
-  [
+  Promise.resolve([
     {
       id: 242403,
       name: "Burgers",
@@ -74,7 +74,6 @@ export const getRestaurantMenu = (): IMenuSection[] =>
                   position: 1000,
                   visible: 1,
                   availabilityType: "AVAILABLE_NOW",
-                  qty: 1,
                   available: true,
                 },
                 {
@@ -208,4 +207,4 @@ export const getRestaurantMenu = (): IMenuSection[] =>
         },
       ],
     },
-  ];
+  ]);

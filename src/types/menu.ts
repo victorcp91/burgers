@@ -9,9 +9,8 @@ export interface IModifierChoice {
   price: number;
   maxChoices: number;
   position: number;
-  visible: 0 | 1;
+  visible: number;
   availabilityType: string;
-  qty: number;
   available: boolean;
 }
 
@@ -25,14 +24,14 @@ export interface IModifier {
 export interface IMenuItem {
   id: number;
   name: string;
-  description: string;
-  alcoholic: 0 | 1;
+  description?: string;
+  alcoholic: number;
   price: number;
   position: number;
-  visible: 0 | 1;
+  visible?: number;
   availabilityType: string;
-  sku: string;
-  images: IImage[];
+  sku?: string;
+  images?: IImage[];
   available: boolean;
   modifiers?: IModifier[];
 }
@@ -40,9 +39,9 @@ export interface IMenuItem {
 export interface IMenuSection {
   id: number;
   name: string;
-  description: string | null;
+  description?: string | null;
   position: number;
-  visible: 1 | 0;
+  visible?: 1 | 0;
   images: IImage[];
   items: IMenuItem[];
 }

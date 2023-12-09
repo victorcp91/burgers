@@ -13,7 +13,7 @@ const generateUniqueId = (item: IMenuItem) => {
       }
     });
   }
-  return [itemId, ...modifierItemIds].toString().replace(",", "");
+  return [itemId, ...modifierItemIds].toString().replace(/,/g, "");
 };
 
 export default generateUniqueId;

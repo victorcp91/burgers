@@ -36,7 +36,6 @@ export const FoodMenu = () => {
         }
       } catch (err) {
         console.error(err);
-      } finally {
       }
     };
     getMenu();

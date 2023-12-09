@@ -1,8 +1,8 @@
 import api from "../config";
 
-export const getRestaurantDetails = () =>
+export const getRestaurantDetails = async () =>
   // api.get("0453ad6e-f530-4864-b101-a7fba4980012");
-  ({
+  Promise.resolve({
     id: 7602,
     name: "BURGERS RESTAURANT",
     internalName: "BURGERS RESTAURANT",
