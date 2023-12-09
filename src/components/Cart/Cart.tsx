@@ -3,6 +3,7 @@ import CartItem from "./components/CartItem";
 import CloseButton from "../CloseButton";
 import { CartContext } from "@/contexts/Cart";
 import { ICartProps } from "./Cart.types";
+import ActionButton from "../ActionButton";
 
 export const Cart = ({ openedMobile, onClose }: ICartProps) => {
   const { cart } = useContext(CartContext);
@@ -64,6 +65,9 @@ export const Cart = ({ openedMobile, onClose }: ICartProps) => {
       ) : (
         <p className="bg-white p-4">Your cart is empty</p>
       )}
+      <div className="absolute w-full p-4 bottom-4 lg:hidden">
+        <ActionButton label="Checkout now" />
+      </div>
     </div>
   );
 };

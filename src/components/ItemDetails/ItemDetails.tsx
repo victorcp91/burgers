@@ -26,12 +26,12 @@ export const ItemDetails = ({ item, onClose }: IItemDetailsProps) => {
     return clearItem;
   });
 
-  // useEffect(() => {
-  //   document.body.style.position = "fixed";
-  //   return () => {
-  //     document.body.style.position = "";
-  //   };
-  // }, []);
+  useEffect(() => {
+    document.body.style.position = "fixed";
+    return () => {
+      document.body.style.position = "";
+    };
+  }, []);
 
   const orderItem = () => {
     addToCart(customItem, count);
@@ -104,23 +104,24 @@ export const ItemDetails = ({ item, onClose }: IItemDetailsProps) => {
 
   return (
     <div className="fixed bg-modalOverlay w-screen h-screen top-0 left-0">
-      <div className="fixed top-0 left-0 w-screen h-screen overflow-y-auto bg-secondaryBackground lg:shadow-cards lg:h-fit lg:max-w-[480px] lg:left-2/4 lg:top-2/4 lg:translate-x-[-50%] lg:translate-y-[-50%] lg:mx-h-[80vh]">
-        <div className="relative w-full h-[265px]">
+      <div className="fixed flex flex-col top-0 left-0 w-screen h-screen overflow-y-auto bg-secondaryBackground lg:shadow-cards lg:h-fit lg:max-w-[480px] lg:left-2/4 lg:top-2/4 lg:translate-x-[-50%] lg:translate-y-[-50%] lg:min-h-[90vh]">
+        <div className="relative w-full h-[265px] lg:h-[320px]">
           <CloseButton
             rounded
-            className="absolute top-10 right-4"
+            className="absolute top-10 right-4 z-10"
             onClick={onClose}
           />
           {!!item.images?.length && (
-            <Image
-              src={item?.images[0].image}
-              alt={item.name}
-              width={480}
-              height={320}
-              priority
-              style={{ objectFit: "cover" }}
-              className="h-full w-full"
-            />
+            <div className="relative h-full overflow-hidden">
+              <Image
+                src={item?.images[0].image}
+                alt={item.name}
+                fill
+                priority
+                sizes="480"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
           )}
         </div>
         <h4 className="bg-white px-4 pt-4 pb-2 text-2xl font-bold">
@@ -138,23 +139,25 @@ export const ItemDetails = ({ item, onClose }: IItemDetailsProps) => {
               removeModifier={removeModifier}
             />
           ))}
-        <div className="flex items-center justify-center pt-7 pb-2">
-          <SubtractionButton
-            size={32}
-            disabled={count === 1}
-            onClick={decrease}
-          />
-          <span className="w-16 text-center text-2xl font-semibold">
-            {count}
-          </span>
-          <PlusButton size={32} onClick={increase} />
-        </div>
-        <div className="px-4 pb-5">
-          <ActionButton
-            label={`Add to Order • ${currency}${total}`}
-            onClick={orderItem}
-            disabled={!canAddToCart}
-          />
+        <div className="flex flex-1 flex-col justify-end">
+          <div className="flex items-center justify-center pt-7 pb-2">
+            <SubtractionButton
+              size={32}
+              disabled={count === 1}
+              onClick={decrease}
+            />
+            <span className="w-16 text-center text-2xl font-semibold">
+              {count}
+            </span>
+            <PlusButton size={32} onClick={increase} />
+          </div>
+          <div className="px-4 pb-5">
+            <ActionButton
+              label={`Add to Order • ${currency}${total}`}
+              onClick={orderItem}
+              disabled={!canAddToCart}
+            />
+          </div>
         </div>
       </div>
     </div>

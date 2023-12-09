@@ -4,8 +4,8 @@ import React, { createContext, useEffect, useReducer } from "react";
 import { IMenuItem } from "@/types";
 import { generateUniqueId } from "@/utils";
 import { ICartItem } from "@/types/cart";
-import { CartAction, CartActionKind } from "./Cart.enums";
-import { ICartContextType, ProviderProps } from "./Cart.types";
+import { CartActionKind } from "./Cart.enums";
+import { CartAction, ICartContextType, ProviderProps } from "./Cart.types";
 import { useStorageCart } from "@/hooks";
 
 export const CartContext = createContext<ICartContextType>(
@@ -23,10 +23,15 @@ const cartReducer = (state: ICartItem[], action: CartAction): ICartItem[] => {
       if (payload.item) {
         const updatedState = [...state];
         updatedState.push(payload.item);
+        payload.saveCart(updatedState);
         return updatedState;
       }
     case CartActionKind.REMOVE:
-      return state.filter((item) => item.uniqueId !== payload.uniqueId);
+      const updatedCart = state.filter(
+        (item) => item.uniqueId !== payload.uniqueId
+      );
+      payload.saveCart(updatedCart);
+      return updatedCart;
     case CartActionKind.UPDATE:
       if (payload.item) {
         const currentState = [...state];
@@ -34,6 +39,7 @@ const cartReducer = (state: ICartItem[], action: CartAction): ICartItem[] => {
           (item: IMenuItem) => item.id === payload.item!.id
         );
         currentState[stateIndex] = payload.item;
+        payload.saveCart(currentState);
         return currentState;
       }
     default:
@@ -46,17 +52,13 @@ const CartProvider = ({ children }: ProviderProps) => {
   const [currentCart, dispatchCart] = useReducer(cartReducer, []);
 
   useEffect(() => {
-    if (!currentCart?.length && storageCart) {
+    if (!currentCart.length && storageCart) {
       dispatchCart({
         type: CartActionKind.LOAD,
-        payload: { initialData: storageCart },
+        payload: { initialData: storageCart, saveCart },
       });
     }
   }, [storageCart]);
-
-  useEffect(() => {
-    saveCart(currentCart);
-  }, [currentCart]);
 
   const addToCart = (item: IMenuItem, qty: number) => {
     const uniqueId = generateUniqueId(item);
@@ -64,12 +66,15 @@ const CartProvider = ({ children }: ProviderProps) => {
     if (existingItem) {
       dispatchCart({
         type: CartActionKind.UPDATE,
-        payload: { item: { ...item, uniqueId, qty: existingItem.qty + qty } },
+        payload: {
+          item: { ...item, uniqueId, qty: existingItem.qty + qty },
+          saveCart,
+        },
       });
     } else {
       dispatchCart({
         type: CartActionKind.ADD,
-        payload: { item: { ...item, uniqueId, qty } },
+        payload: { item: { ...item, uniqueId, qty }, saveCart },
       });
     }
   };
@@ -79,13 +84,16 @@ const CartProvider = ({ children }: ProviderProps) => {
     if (existingItem) {
       dispatchCart({
         type: CartActionKind.UPDATE,
-        payload: { item: { ...existingItem, uniqueId, qty } },
+        payload: { item: { ...existingItem, uniqueId, qty }, saveCart },
       });
     }
   };
 
-  const removeItem = (uniqueId: string) => {
-    dispatchCart({ type: CartActionKind.REMOVE, payload: { uniqueId } });
+  const removeItem = async (uniqueId: string) => {
+    dispatchCart({
+      type: CartActionKind.REMOVE,
+      payload: { uniqueId, saveCart },
+    });
   };
 
   return (

@@ -6,12 +6,3 @@ export enum CartActionKind {
   UPDATE = "UPDATE",
   LOAD = "LOAD",
 }
-
-export interface CartAction {
-  type: CartActionKind;
-  payload: {
-    item?: ICartItem;
-    uniqueId?: string;
-    initialData?: ICartItem[];
-  };
-}

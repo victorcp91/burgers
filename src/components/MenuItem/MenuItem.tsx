@@ -24,6 +24,7 @@ export const MenuItem = ({ item, onClick }: IMenuItemProps) => {
             src={item.images[0].image}
             alt={item.name}
             fill
+            sizes="128px"
             style={{ objectFit: "cover" }}
           />
         )}
