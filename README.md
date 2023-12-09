@@ -56,3 +56,17 @@ To run the test:
 ```bash
 npm run test
 ```
+
+### API
+
+I tried to use the endpoints provided in the challenge link [https://github.com/qsengineers/frontend-challenge/blob/main/CHALLENGE.md](https://github.com/qsengineers/frontend-challenge/blob/main/CHALLENGE.md) are not working.
+
+Example:
+
+- Restaurant Details:
+  [https://run.mocky.io/v3/0453ad6e-f530-4864-b101-a7fba4980012](https://run.mocky.io/v3/0453ad6e-f530-4864-b101-a7fba4980012)
+
+- Menu Details:
+  [https://run.mocky.io/v3/a27e98a8-fe59-4623-be70-b9ac4a3254a7](https://run.mocky.io/v3/a27e98a8-fe59-4623-be70-b9ac4a3254a7)
+
+So I did the API configuration but I had to use the mocked object examples provided.
