@@ -1,14 +1,4 @@
 import { IRestaurant, IWebSettings } from "./restaurant";
-import {
-  IMenuSection,
-  IMenuItem,
-  ERestaurantAvailability,
-} from "./restaurantMenu";
+import { IMenuSection, IMenuItem } from "./menu";
 
-export type {
-  IRestaurant,
-  IWebSettings,
-  IMenuSection,
-  IMenuItem,
-  ERestaurantAvailability,
-};
+export type { IRestaurant, IWebSettings, IMenuSection, IMenuItem };

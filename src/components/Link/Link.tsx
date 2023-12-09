@@ -1,13 +1,12 @@
 import { ILinkProps } from "./Link.types";
 
-export const Link = ({ label, href, color }: ILinkProps) => {
+export const Link = ({ label, href }: ILinkProps) => {
   return (
-    <div className="p-6 border-b-[1px] border-border mb-5">
+    <div className="p-6 border-b-[1px] border-border lg:mb-5 bg-transparent lg:invisible">
       <a
         href={href}
         target="_blank"
-        className="block w-full text-center rounded-full underline text-base font-bold"
-        style={{ backgroundColor: color }}
+        className="block w-full text-center rounded-full underline text-base font-bold bg-white"
       >
         {label}
       </a>

@@ -1,6 +1,6 @@
 import { IMenuItem, IMenuSection } from "@/types";
 
-export const getFilteredMenuItems = (
+const getFilteredMenuItems = (
   menu: IMenuSection[],
   searchString: string
 ): IMenuItem[] | false => {
@@ -17,3 +17,5 @@ export const getFilteredMenuItems = (
   });
   return filteredItems;
 };
+
+export default getFilteredMenuItems;

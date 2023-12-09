@@ -4,12 +4,12 @@ import { arrowUpIcon } from "@/assets/icons";
 import MenuItem from "../MenuItem";
 import { IFoodSectionProps } from "./FoodSectionTypes";
 
-export const FoodSection = ({ section }: IFoodSectionProps) => {
+export const FoodSection = ({ section, onSelect }: IFoodSectionProps) => {
   const [opened, toggleOpened] = useReducer((current) => !current, true);
 
   return (
     <>
-      <div className="mt-5 flex justify-between items-center">
+      <div className="mt-5 flex justify-between items-center lg:mt-12 lg:shadow-sm">
         <h2 id={section.name} className="text-2xl font-medium ">
           {section.name}
         </h2>
@@ -35,7 +35,7 @@ export const FoodSection = ({ section }: IFoodSectionProps) => {
       >
         {section.items.map((item) => (
           <li key={item.id} className="flex">
-            <MenuItem item={item} />
+            <MenuItem item={item} onClick={() => onSelect(item)} />
           </li>
         ))}
       </ul>

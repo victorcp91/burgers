@@ -35,10 +35,10 @@ export const SearchInput = ({
   };
 
   return (
-    <div className="flex h-10 w-[cal(100% - 2rem)] rounded-[7.29px] border-[0.91px] border-inputBorder">
+    <div className="flex h-10 w-[cal(100% - 2rem)] rounded-[7.29px] border-[0.91px] border-inputBorder bg-white">
       <Image src={searchIcon} alt="Buscar" className="m-3" />
       <input
-        className="w-full h-full bg-transparent outline-none"
+        className="w-full h-full bg-transparent outline-none lg:placeholder:text-[#2C2C2C]"
         {...props}
         value={localValue}
         onChange={(e) => typing(e.currentTarget.value)}

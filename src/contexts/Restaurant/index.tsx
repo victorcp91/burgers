@@ -1,7 +1,7 @@
 "use client";
 
 import { IRestaurant, IWebSettings } from "@/types";
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 
 export interface IRestaurantContextType {
   restaurant: IRestaurant;
@@ -22,6 +22,24 @@ interface Props {
 const RestaurantProvider = ({ children, initialValue }: Props) => {
   const [currentRestaurant, setCurrentRestaurant] =
     useState<IRestaurant>(initialValue);
+
+  useEffect(() => {
+    if (
+      (initialValue &&
+        document.documentElement &&
+        !document.documentElement.style.getPropertyValue("--primary-color")) ||
+      !document.documentElement.style.getPropertyValue("--primary-color-hover")
+    ) {
+      document.documentElement.style.setProperty(
+        "--primary-color",
+        initialValue.webSettings.primaryColour
+      );
+      document.documentElement.style.setProperty(
+        "--primary-color-hover",
+        initialValue.webSettings.primaryColourHover
+      );
+    }
+  }, [initialValue]);
 
   const setRestaurant = (r: IRestaurant) => {
     setCurrentRestaurant(r);

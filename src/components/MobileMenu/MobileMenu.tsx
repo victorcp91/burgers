@@ -3,7 +3,7 @@ import { hamburgerMenuIcon } from "@/assets/icons";
 
 export const MobileMenu = () => {
   return (
-    <button className="absolute right-5 w-7 h-7 flex justify-center align-middle">
+    <button className="absolute right-5 w-7 h-7 flex justify-center align-middle lg:hidden">
       <Image
         src={hamburgerMenuIcon}
         alt="Menu"

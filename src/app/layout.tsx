@@ -16,10 +16,7 @@ export default async function RootLayout({
   return (
     <html
       lang={restaurant.locale}
-      className="scroll-smooth"
-      style={{
-        backgroundColor: restaurant.webSettings.backgroundColour || "#fff",
-      }}
+      className="max-w-full scroll-smooth bg-bodyBackground"
     >
       <head>
         <title>{restaurant.name}</title>
@@ -32,7 +29,7 @@ export default async function RootLayout({
           content={restaurant.description || restaurant.internalName}
         />
       </head>
-      <body>
+      <body className="w-screen overflow-x-hidden">
         <>
           <Navbar
             backgroundColor={restaurant.webSettings.navBackgroundColour}

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const Header = ({ imageSrc, alt }: IHeaderProps) => {
   return (
-    <div className="relative w-full h-[9.375rem]">
+    <div className="relative w-screen h-[9.375rem]">
       <Image
         src={imageSrc}
         alt={alt}
