@@ -104,7 +104,7 @@ export const ItemDetails = ({ item, onClose }: IItemDetailsProps) => {
 
   return (
     <div className="fixed bg-modalOverlay w-screen h-screen top-0 left-0">
-      <div className="fixed flex flex-col top-0 left-0 w-screen h-screen overflow-y-auto bg-secondaryBackground lg:shadow-cards lg:h-fit lg:max-w-[480px] lg:left-2/4 lg:top-2/4 lg:translate-x-[-50%] lg:translate-y-[-50%] lg:min-h-[90vh]">
+      <div className="fixed flex flex-col top-0 left-0 w-screen h-screen overflow-y-auto bg-secondaryBackground lg:shadow-cards lg:h-fit lg:max-w-[480px] lg:left-2/4 lg:top-2/4 lg:translate-x-[-50%] lg:translate-y-[-50%]  lg:max-h-[88vh] lg:overflow-y-auto">
         <div className="relative w-full h-[265px] lg:h-[320px]">
           <CloseButton
             rounded
@@ -112,7 +112,7 @@ export const ItemDetails = ({ item, onClose }: IItemDetailsProps) => {
             onClick={onClose}
           />
           {!!item.images?.length && (
-            <div className="relative h-full overflow-hidden">
+            <div className="relative overflow-hidden h-full  lg:h-[320px]">
               <Image
                 src={item?.images[0].image}
                 alt={item.name}
